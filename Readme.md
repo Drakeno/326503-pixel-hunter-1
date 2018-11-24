@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Владислав Кожевников](https://up.htmlacademy.ru/ecmascript/7/user/326503).
-* Наставник: `Неизвестно`.
+* Наставник: `Нету (`.
 
 ---
 
