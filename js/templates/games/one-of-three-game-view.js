@@ -19,7 +19,7 @@ export default class OneOfThreeGameView extends AbstractView {
       const content = renderElement(``, `form`, `game__content game__content--triple`);
       tasks.forEach((item) => {
         const index = tasks.indexOf(item) + 1;
-        const properImage = renderImage(item.ProperImg, `Option ${index}`);
+        const properImage = renderImage(item.properImg, `Option ${index}`);
 
         const option = renderElement(``, `div`, `game__option`);
         if (item.type === ImageType.PHOTO) {

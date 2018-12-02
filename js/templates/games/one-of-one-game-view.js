@@ -18,7 +18,7 @@ export default class OneOfOneGameView extends AbstractView {
   getTemplate() {
     const createOption = (item) => {
       const content = renderElement(``, `form`, `game__content game__content--wide`);
-      const properImage = renderImage(item.ProperImg, `Option 1`);
+      const properImage = renderImage(item.properImg, `Option 1`);
       const answersButtons = new AnswerButtonsView(`question1`).element;
 
       const soloOption = renderElement(``, `div`, `game__option`);

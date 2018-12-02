@@ -20,7 +20,7 @@ export default class TwoOfTwoGameView extends AbstractView {
       const content = renderElement(``, `form`, `game__content`);
       tasks.forEach((item) => {
         const index = tasks.indexOf(item) + 1;
-        const properImage = renderImage(item.ProperImg, `Option ${index}`);
+        const properImage = renderImage(item.properImg, `Option ${index}`);
         const answersBtns = new AnswerBtnsView(`question${index}`).element;
         const option = renderElement(``, `div`, `game__option`);
 
