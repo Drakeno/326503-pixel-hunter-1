@@ -1,4 +1,4 @@
-import { globalGameData } from "../../data/game-data";
+import {globalGameData} from "../../data/game-data";
 
 
 class Timer {
