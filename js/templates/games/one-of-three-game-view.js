@@ -1,7 +1,7 @@
-import AbstractView from '../abstract-view';
-import {ImageType} from '../data/game-data';
-import timer from './items/timer';
-import {renderElement, resizeToProperSize} from '../utils';
+import AbstractView from '../../abstract-view';
+import {ImageType} from '../../data/game-data';
+import timer from '../items/timer';
+import {renderElement, renderImage} from '../../utils';
 
 export default class OneOfThreeGameView extends AbstractView {
   get element() {
@@ -18,9 +18,9 @@ export default class OneOfThreeGameView extends AbstractView {
     const createOptions = (tasks) => {
       const content = renderElement(``, `form`, `game__content game__content--triple`);
       tasks.forEach((item) => {
-        const properImage = resizeToProperSize(item);
         const index = tasks.indexOf(item) + 1;
-        properImage.alt = `Option ${index}`;
+        const properImage = renderImage(item.ProperImg, `Option ${index}`);
+
         const option = renderElement(``, `div`, `game__option`);
         if (item.type === ImageType.PHOTO) {
           option.dataset.imageType = ImageType.PHOTO;

@@ -83,4 +83,9 @@ export const resizeToProperSize = (image) => {
   return resizeImg(image, frame);
 };
 
+export const renderImage = (item, alt) => {
+  item.alt = alt;
+  return resizeToProperSize(item);
+};
+
 export default mainElement;
