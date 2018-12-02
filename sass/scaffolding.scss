@@ -125,3 +125,26 @@ a {
     transform: rotate(360deg);
   }
 }
+
+// Стиль мигания таймера
+.blink {
+  animation: blink 0.5s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  50.01% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
