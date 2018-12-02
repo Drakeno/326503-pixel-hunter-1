@@ -1,8 +1,8 @@
-import AbstractView from '../abstract-view';
-import AnswerBtnsView from './items/answer-buttons';
-import {ImageType} from '../data/game-data';
-import timer from './items/timer';
-import {renderElement, resizeToProperSize} from '../utils';
+import AbstractView from '../../abstract-view';
+import AnswerBtnsView from '../items/answer-buttons';
+import {ImageType} from '../../data/game-data';
+import timer from '../items/timer';
+import {renderElement, renderImage} from '../../utils';
 
 export default class TwoOfTwoGameView extends AbstractView {
   get element() {
@@ -19,11 +19,11 @@ export default class TwoOfTwoGameView extends AbstractView {
     const createOptions = (tasks) => {
       const content = renderElement(``, `form`, `game__content`);
       tasks.forEach((item) => {
-        const properImage = resizeToProperSize(item);
         const index = tasks.indexOf(item) + 1;
-        properImage.alt = `Option ${index}`;
+        const properImage = renderImage(item.ProperImg, `Option ${index}`);
         const answersBtns = new AnswerBtnsView(`question${index}`).element;
         const option = renderElement(``, `div`, `game__option`);
+
         option.appendChild(properImage);
         option.appendChild(answersBtns);
 
