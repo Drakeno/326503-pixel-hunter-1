@@ -24,6 +24,7 @@ export default class RulesView extends AbstractView {
     <form class="rules__form">
       <input class="rules__input" type="text" placeholder="Ваше Имя">
       <button class="rules__button  continue" type="submit" disabled>Go!</button>
+      <p class="rules__devhint">*Режим отладки: Добавить <b>#debug</b> в адресную строку</p>
     </form></section>`;
 
     return header + rules;
@@ -34,6 +35,7 @@ export default class RulesView extends AbstractView {
     this.rulesForm = this.element.querySelector(`.rules__form`);
     this.rulesInput = this.rulesForm.querySelector(`.rules__input`);
     this.rulesSubmit = this.rulesForm.querySelector(`.rules__button`);
+    this.devCheck = this.rulesForm.querySelector(`#dev-check`);
 
     this.inputCallback = () => {
       if (this.rulesInput.value) {

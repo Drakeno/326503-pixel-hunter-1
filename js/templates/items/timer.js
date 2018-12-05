@@ -30,9 +30,9 @@ class Timer {
         this.callback();
       } else if (this.currentTime < globalGameData.WARNING_TIME) {
         this.timeWarningCallback();
-        this.timeoutId = setTimeout(tick, 1000);
+        this.timeoutId = setTimeout(tick, globalGameData.TIME_TICK);
       } else {
-        this.timeoutId = setTimeout(tick, 1000);
+        this.timeoutId = setTimeout(tick, globalGameData.TIME_TICK);
       }
     };
 

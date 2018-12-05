@@ -6,7 +6,7 @@ import Greeting from './templates/greeting-view';
 import Rules from './templates/rules-view';
 import Game from './templates/game-view';
 import StatsView from './templates/stats-view';
-import state from './data/state';
+import GameModel from './game-model';
 
 let questData;
 export default class Application {
@@ -17,11 +17,13 @@ export default class Application {
       catch((error) => Application.showError(error)).
       then((data) => {
         questData = data;
-        questData.forEach((element) => {
+        Promise.all([questData.forEach((element) => {
           element.tasks.forEach((task) => massImageResize(task));
-        });
-      }).
-      then(() => Application.showGreeting());
+        })]).
+          then(() => {
+            Application.showGreeting();
+          });
+      });
   }
 
   static showGreeting() {
@@ -46,7 +48,7 @@ export default class Application {
     Loader.saveResults(status.currentRound, status.currentRound.name).
       then(() => Loader.loadResults(status.currentRound.name).
         then((data) => scoreBoard.showScores(data)).
-        then(state.reset()).
+        then(GameModel.reset()).
         catch(Application.showError));
   }
 

@@ -47,6 +47,11 @@ const templatesData = {
     speedBonusTitle: `Бонус за скорость:`,
     lifeBonusTitle: `Бонус за жизни:`,
     fineTitle: `Штраф за медлительность:`
+  },
+
+  gamePage: {
+    photoAnswer: `photo`,
+    paintAnswer: `paint`
   }
 
 };

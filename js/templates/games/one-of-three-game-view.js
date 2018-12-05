@@ -1,7 +1,9 @@
 import AbstractView from '../../abstract-view';
-import {ImageType} from '../../data/game-data';
+import { ImageType } from '../../data/game-data';
 import timer from '../items/timer';
-import {renderElement, renderImage} from '../../utils';
+import { renderElement, renderImage } from '../../utils';
+
+const DEBUG = window.location.hash.replace(`#`, ``).toLowerCase() === `debug`;
 
 export default class OneOfThreeGameView extends AbstractView {
   get element() {
@@ -22,6 +24,18 @@ export default class OneOfThreeGameView extends AbstractView {
         const properImage = renderImage(item.properImg, `Option ${index}`);
 
         const option = renderElement(``, `div`, `game__option`);
+
+        if (DEBUG) {
+          let hintText;
+          if (item.type === ImageType.PHOTO) {
+            hintText = `ФОТО`;
+          } else if (item.type === ImageType.PAINT) {
+            hintText = `РИСУНОК`;
+          }
+          const hint = renderElement(hintText, `p`, `game__hint`);
+          option.appendChild(hint);
+        }
+
         if (item.type === ImageType.PHOTO) {
           option.dataset.imageType = ImageType.PHOTO;
         } else {

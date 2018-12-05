@@ -20,6 +20,16 @@ export default class StatsView extends AbstractView {
   </section>`;
   }
 
+  static setBonusBlock(title, number, pointsForOne, total) {
+    return `<tr>
+            <td></td>
+            <td class="result__extra">${title}</td>
+            <td class="result__extra">${number}</td>
+            <td class="result__points">× ${pointsForOne}</td>
+            <td class="result__total">${total}</td>
+            </tr>`;
+  }
+
   showScores(loadedData) {
     const resultsData = loadedData.reverse();
     let resultContainer = ``;
@@ -37,33 +47,15 @@ export default class StatsView extends AbstractView {
 
       if (round.isWin && (round.fastBonuses !== null || round.livesBonuses !== null || round.slowFine !== null)) {
         if (round.fastBonuses) {
-          bonusesBlock += `<tr>
-        <td></td>
-        <td class="result__extra">${data.speedBonusTitle}</td>
-        <td class="result__extra">${round.fastBonuses} <span class="stats__result stats__result--fast"></span></td>
-        <td class="result__points">× ${points.BONUS}</td>
-        <td class="result__total">${round.fastBonuses * points.BONUS}</td>
-      </tr>`;
+          bonusesBlock += StatsView.setBonusBlock(data.speedBonusTitle, round.fastBonuses, points.BONUS, round.fastBonuses * points.BONUS);
         }
 
         if (round.livesBonuses) {
-          bonusesBlock += `<tr>
-        <td></td>
-        <td class="result__extra">${data.lifeBonusTitle}</td>
-        <td class="result__extra">${round.livesBonuses} <span class="stats__result stats__result--fast"></span></td>
-        <td class="result__points">× ${points.BONUS}</td>
-        <td class="result__total">${round.livesBonuses * points.BONUS}</td>
-      </tr>`;
+          bonusesBlock += StatsView.setBonusBlock(data.lifeBonusTitle, round.livesBonuses, points.BONUS, round.livesBonuses * points.BONUS);
         }
 
         if (round.slowFine) {
-          bonusesBlock += `<tr>
-        <td></td>
-        <td class="result__extra">${data.lifeBonusTitle}</td>
-        <td class="result__extra">${round.slowFine} <span class="stats__result stats__result--fast"></span></td>
-        <td class="result__points">× ${points.FINE}</td>
-        <td class="result__total">${round.slowFine * points.FINE}</td>
-      </tr>`;
+          bonusesBlock += StatsView.setBonusBlock(data.lifeBonusTitle, round.slowFine, points.FINE, round.slowFine * points.FINE);
         }
       }
 

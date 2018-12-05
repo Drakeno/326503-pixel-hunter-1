@@ -1,14 +1,16 @@
-import GameData, {globalGameData} from './game-data';
-import timer from '../templates/items/timer';
-import {isEquivalent} from '../utils';
+import GameData, {globalGameData} from './data/game-data';
+import timer from './templates/items/timer';
+import {isEquivalent} from './utils';
 
 const points = globalGameData.Points;
 const statsType = globalGameData.StatsType;
+const debugMode = globalGameData.DEBUG;
 
-class State {
+class GameModel {
   constructor(state) {
     const initialState = new GameData();
     this._state = state ? state : initialState;
+    this._state.debugMode = debugMode ? debugMode : null;
   }
 
   get currentRound() {
@@ -31,11 +33,11 @@ class State {
   }
 
   setResult(answer, time) {
-    this._state = State.setResult(this._state, answer, time);
+    this._state = GameModel.setResult(this._state, answer, time);
   }
 
   countTotal() {
-    this._state = State.countTotal(this._state);
+    this._state = GameModel.countTotal(this._state);
   }
 
   static checkCorrect(taskResult) {
@@ -91,9 +93,9 @@ class State {
     const resultWithAnswers = setRealAnswer(setUserAnswer({}, answer), realAnswer);
 
     const resultWithTime = setTime(resultWithAnswers, time);
-    const taskResult = State.checkAnswerType(State.checkCorrect(resultWithTime));
+    const taskResult = GameModel.checkAnswerType(GameModel.checkCorrect(resultWithTime));
 
-    let gameStatus = State.setStats(round, taskResult.statsType);
+    let gameStatus = GameModel.setStats(round, taskResult.statsType);
 
     if (!taskResult.isCorrect) {
       gameStatus = decreaseLives(gameStatus);
@@ -161,5 +163,4 @@ class State {
   }
 }
 
-const state = new State();
-export default state;
+export default new GameModel();

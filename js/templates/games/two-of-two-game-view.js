@@ -3,6 +3,10 @@ import AnswerBtnsView from '../items/answer-buttons';
 import {ImageType} from '../../data/game-data';
 import timer from '../items/timer';
 import {renderElement, renderImage} from '../../utils';
+import templatesData from '../../data/templates-data';
+
+const ANSWER_TYPES = templatesData.gamePage;
+const DEBUG = window.location.hash.replace(`#`, ``).toLowerCase() === `debug`;
 
 export default class TwoOfTwoGameView extends AbstractView {
   get element() {
@@ -23,6 +27,17 @@ export default class TwoOfTwoGameView extends AbstractView {
         const properImage = renderImage(item.properImg, `Option ${index}`);
         const answersBtns = new AnswerBtnsView(`question${index}`).element;
         const option = renderElement(``, `div`, `game__option`);
+
+        if (DEBUG) {
+          let hintText;
+          if (item.type === ImageType.PHOTO) {
+            hintText = `ФОТО`;
+          } else if (item.type === ImageType.PAINT) {
+            hintText = `РИСУНОК`;
+          }
+          const hint = renderElement(hintText, `p`, `game__hint`);
+          option.appendChild(hint);
+        }
 
         option.appendChild(properImage);
         option.appendChild(answersBtns);
@@ -55,13 +70,12 @@ export default class TwoOfTwoGameView extends AbstractView {
         timer.stop();
         const secondAnswer = element.currentTarget.querySelector(`input`).value;
         const answerSynchronize = (firstInput.name === firstName) ? [firstInput.value, secondAnswer] : [secondAnswer, firstInput.value];
-        const photoAnswer = `photo`;
-        const paintAnswer = `paint`;
+
         const answer = answerSynchronize.map((userAnswer) => {
           switch (userAnswer) {
-            case photoAnswer:
+            case ANSWER_TYPES.photoAnswer:
               return ImageType.PHOTO;
-            case paintAnswer:
+            case ANSWER_TYPES.paintAnswer:
               return ImageType.PAINT;
             default:
               return null;

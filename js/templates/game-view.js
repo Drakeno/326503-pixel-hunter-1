@@ -6,14 +6,14 @@ import TwoOfTwoGameView from './games/two-of-two-game-view';
 import OneOfOneGameView from './games/one-of-one-game-view';
 import OneOfThreeGameView from './games/one-of-three-game-view';
 import Application from '../application';
-import state from '../data/state';
 import timer from './items/timer';
+import GameModel from '../game-model';
 
 export default class GameView {
   constructor(questData, name) {
     this.name = name;
     this.questData = questData;
-    this.round = state.currentRound;
+    this.round = GameModel.currentRound;
     this.task = this.questData[this.round.currentTask];
     this.header = this.renderHeader();
     this.level = this.renderLevel();
@@ -58,7 +58,7 @@ export default class GameView {
   }
 
   startLevel() {
-    state.configure(this.questData, this.name);
+    GameModel.configure(this.questData, this.name);
     timer.configure(globalGameData.START_TIME, this.game.querySelector(`.game__timer`), GameView.timeWarningCallback, GameView.timeOverCallback).start();
 
     return this.game;
@@ -73,28 +73,28 @@ export default class GameView {
   }
 
   static timeOverCallback() {
-    state.setResult([], 0);
+    GameModel.setResult([], 0);
     GameView.goToNextScreen();
   }
 
   static TwoOfTwoCallback(e) {
-    TwoOfTwoGameView.setGame(e, state, GameView);
+    TwoOfTwoGameView.setGame(e, GameModel, GameView);
   }
 
   static OneOfOneCallback(e) {
-    OneOfOneGameView.setGame(e, state, GameView);
+    OneOfOneGameView.setGame(e, GameModel, GameView);
   }
 
   static OneOfThreeCallback(e) {
-    OneOfThreeGameView.setGame(e, state, GameView);
+    OneOfThreeGameView.setGame(e, GameModel, GameView);
   }
 
   static goToNextScreen() {
-    const round = state.currentRound;
+    const round = GameModel.currentRound;
     const current = round.currentTask;
     if (round.lives < globalGameData.MIN_LIVES || current >= globalGameData.MAX_ANSWERS) {
-      state.countTotal();
-      Application.showResults(state);
+      GameModel.countTotal();
+      Application.showResults(GameModel);
     } else {
       Application.showGame();
     }

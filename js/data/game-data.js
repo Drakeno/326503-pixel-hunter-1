@@ -18,6 +18,7 @@ export const globalGameData = {
   SLOW_TIME: 10,
   WARNING_TIME: 5,
   END_TIME: 0,
+  TIME_TICK: 1000,
 
   StatsType: {
     WRONG: 0,
