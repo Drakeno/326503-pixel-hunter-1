@@ -67,25 +67,52 @@ export const resize = (frame, object) => {
 export const resizeImg = (image, frame) => {
   const picture = new Image();
   picture.src = image.src;
+
   picture.onload = () => {
-    const properSize = resize(frame, picture);
+    let resolvedImgSize = {
+      width: picture.width,
+      height: picture.height
+    };
+
+    const properSize = resize(frame, resolvedImgSize);
     picture.width = properSize.width;
     picture.height = properSize.height;
   };
+
   return picture;
 };
 
-export const resizeToProperSize = (image) => {
+export const resizeToProperSize = (image, baseFrame) => {
   const frame = {
-    width: image.width,
-    height: image.height
+    width: baseFrame.width,
+    height: baseFrame.height
   };
   return resizeImg(image, frame);
 };
 
 export const renderImage = (item, alt) => {
   item.alt = alt;
-  return resizeToProperSize(item);
+  return item;
+};
+
+export const massImageResize = (task) => {
+  let promise = new Promise((resolve, reject) => {
+    let baseFrame = {
+      width: task.width,
+      height: task.height
+    };
+    const properSize = resizeImg(task, baseFrame);
+    resolve(properSize);
+    setTimeout(() => reject(new Error(`error`)), 5000);
+  });
+
+  promise
+    .then(
+        (result) => {
+          task.properImg = result;
+        },
+        (error) => error
+    );
 };
 
 export default mainElement;

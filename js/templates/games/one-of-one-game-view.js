@@ -3,8 +3,13 @@ import AnswerButtonsView from '../items/answer-buttons';
 import {ImageType} from '../../data/game-data';
 import timer from '../items/timer';
 import {renderElement, renderImage} from '../../utils';
+import templatesData from '../../data/templates-data';
+
+const DEBUG = window.location.hash.replace(`#`, ``).toLowerCase() === `debug`;
+const ANSWER_TYPES = templatesData.gamePage;
 
 export default class OneOfOneGameView extends AbstractView {
+
   get element() {
     if (this._element) {
       return this._element;
@@ -18,10 +23,22 @@ export default class OneOfOneGameView extends AbstractView {
   getTemplate() {
     const createOption = (item) => {
       const content = renderElement(``, `form`, `game__content game__content--wide`);
-      const properImage = renderImage(item.ProperImg, `Option 1`);
+      const properImage = renderImage(item.properImg, `Option 1`);
       const answersButtons = new AnswerButtonsView(`question1`).element;
 
       const soloOption = renderElement(``, `div`, `game__option`);
+
+      if (DEBUG) {
+        let hintText;
+        if (item.type === ImageType.PHOTO) {
+          hintText = `ФОТО`;
+        } else if (item.type === ImageType.PAINT) {
+          hintText = `РИСУНОК`;
+        }
+        const hint = renderElement(hintText, `p`, `game__hint`);
+        soloOption.appendChild(hint);
+      }
+
       soloOption.appendChild(properImage);
       soloOption.appendChild(answersButtons);
 
@@ -42,12 +59,12 @@ export default class OneOfOneGameView extends AbstractView {
     element.preventDefault();
     timer.stop();
     const userAnswer = element.currentTarget.querySelector(`input`).value;
-    const photoAnswer = `photo`;
-    const paintAnswer = `paint`;
+
     let answer;
-    if (userAnswer === photoAnswer) {
+
+    if (userAnswer === ANSWER_TYPES.photoAnswer) {
       answer = [ImageType.PHOTO];
-    } else if (userAnswer === paintAnswer) {
+    } else if (userAnswer === ANSWER_TYPES.paintAnswer) {
       answer = [ImageType.PAINT];
     }
     state.setResult(answer, timer.getTime());

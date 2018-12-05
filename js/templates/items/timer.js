@@ -1,3 +1,6 @@
+import {globalGameData} from "../../data/game-data";
+
+
 class Timer {
   constructor() {
     this.currentTime = null;
@@ -23,16 +26,13 @@ class Timer {
       this.container.innerHTML = this.currentTime;
       this.currentTime--;
 
-      const warningTime = 5;
-      const callbackTime = 0;
-
-      if (this.currentTime < callbackTime) {
+      if (this.currentTime < globalGameData.END_TIME) {
         this.callback();
-      } else if (this.currentTime < warningTime) {
+      } else if (this.currentTime < globalGameData.WARNING_TIME) {
         this.timeWarningCallback();
-        this.timeoutId = setTimeout(tick, 1000);
+        this.timeoutId = setTimeout(tick, globalGameData.TIME_TICK);
       } else {
-        this.timeoutId = setTimeout(tick, 1000);
+        this.timeoutId = setTimeout(tick, globalGameData.TIME_TICK);
       }
     };
 

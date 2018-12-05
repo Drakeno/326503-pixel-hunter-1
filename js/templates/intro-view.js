@@ -10,10 +10,12 @@ export default class IntroView extends AbstractView {
       Application.showGreeting();
     };
   }
-  getTemplate(load) {
-    return `<section class="intro"><button class="intro__asterisk asterisk ${load ? `load` : ``}" type="button"><span class="visually-hidden">Продолжить</span>*</button>
+
+  getTemplate() {
+    return `<section class="intro"><button class="intro__asterisk asterisk load" type="button"><span class="visually-hidden">Продолжить</span>*</button>
     <p class="intro__motto"><sup>*</sup>${templatesData.intro.text}</p></section>`;
   }
+
   bind() {
     this.actionElements = this.element.querySelectorAll(`.intro__asterisk`);
     super.bind();
