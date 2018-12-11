@@ -30,11 +30,13 @@ export default class Application {
     this.currentView = new Greeting();
     showScreen(this.currentView.element);
   }
+
   static showRules() {
     this.currentView.clear();
     this.currentView = new Rules();
     showScreen(this.currentView.element);
   }
+
   static showGame(name) {
     if (this.currentView) {
       this.currentView.clear();
@@ -42,6 +44,7 @@ export default class Application {
     this.currentView = null;
     showScreen(new Game(questData, name).startLevel());
   }
+
   static showResults(status) {
     const scoreBoard = new StatsView(status);
     showScreen(scoreBoard.element);
