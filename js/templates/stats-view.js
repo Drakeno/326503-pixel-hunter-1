@@ -32,6 +32,7 @@ export default class StatsView extends AbstractView {
 
   showScores(loadedData) {
     const resultsData = loadedData.reverse();
+
     let resultContainer = ``;
     resultsData.forEach((result) => {
       const round = result.round;
