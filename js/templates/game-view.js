@@ -64,10 +64,6 @@ export default class GameView {
     return this.game;
   }
 
-  returnQuestions() {
-    return this.questData;
-  }
-
   static timeWarningCallback() {
     this.container.classList.add(`blink`);
   }

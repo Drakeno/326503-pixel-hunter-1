@@ -82,14 +82,6 @@ export const resizeImg = (image, frame) => {
   return picture;
 };
 
-export const resizeToProperSize = (image, baseFrame) => {
-  const frame = {
-    width: baseFrame.width,
-    height: baseFrame.height
-  };
-  return resizeImg(image, frame);
-};
-
 export const renderImage = (item, alt) => {
   item.alt = alt;
   return item;
