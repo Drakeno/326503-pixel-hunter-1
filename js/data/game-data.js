@@ -1,7 +1,7 @@
 export const GameType = {
-  TwoOfTwo: 0,
-  OneOfOne: 1,
-  OneOfThree: 2
+  twoOfTwo: 0,
+  oneOfOne: 1,
+  oneOfThree: 2
 };
 
 export const ImageType = {

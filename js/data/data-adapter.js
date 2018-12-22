@@ -1,9 +1,9 @@
 import {GameType, ImageType} from '../data/game-data';
 
 const localTypeMapper = {
-  'two-of-two': GameType.TwoOfTwo,
-  'one-of-three': GameType.OneOfThree,
-  'tinder-like': GameType.OneOfOne
+  'two-of-two': GameType.twoOfTwo,
+  'one-of-three': GameType.oneOfThree,
+  'tinder-like': GameType.oneOfOne
 };
 
 const localAnswerTypeMapper = {
