@@ -56,7 +56,7 @@ export default class StatsView extends AbstractView {
         }
 
         if (round.slowFine) {
-          bonusesBlock += StatsView.setBonusBlock(data.lifeBonusTitle, round.slowFine, points.FINE, round.slowFine * points.FINE);
+          bonusesBlock += StatsView.setBonusBlock(data.fineTitle, round.slowFine, points.FINE, round.slowFine * points.FINE);
         }
       }
 

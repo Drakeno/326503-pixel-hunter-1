@@ -43,11 +43,11 @@ export default class GameView {
   renderGameContent() {
     switch (this.task.gameType) {
       case GameType.TwoOfTwo:
-        return new TwoOfTwoGameView(this.task, GameView.TwoOfTwoCallback).element;
+        return new TwoOfTwoGameView(this.task, GameView.twoOfTwoCallback).element;
       case GameType.OneOfOne:
-        return new OneOfOneGameView(this.task, GameView.OneOfOneCallback).element;
+        return new OneOfOneGameView(this.task, GameView.oneOfOneCallback).element;
       case GameType.OneOfThree:
-        return new OneOfThreeGameView(this.task, GameView.OneOfThreeCallback).element;
+        return new OneOfThreeGameView(this.task, GameView.oneOfThreeCallback).element;
       default:
         throw new Error(`Unknown game type`);
     }
@@ -77,15 +77,15 @@ export default class GameView {
     GameView.goToNextScreen();
   }
 
-  static TwoOfTwoCallback(e) {
+  static twoOfTwoCallback(e) {
     TwoOfTwoGameView.setGame(e, GameModel, GameView);
   }
 
-  static OneOfOneCallback(e) {
+  static oneOfOneCallback(e) {
     OneOfOneGameView.setGame(e, GameModel, GameView);
   }
 
-  static OneOfThreeCallback(e) {
+  static oneOfThreeCallback(e) {
     OneOfThreeGameView.setGame(e, GameModel, GameView);
   }
 
