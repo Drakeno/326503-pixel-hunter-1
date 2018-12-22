@@ -1,12 +1,12 @@
 import AbstractView from '../../abstract-view';
 import AnswerBtnsView from '../items/answer-buttons';
-import {ImageType} from '../../data/game-data';
+import {ImageType, globalGameData} from '../../data/game-data';
 import timer from '../items/timer';
 import {renderElement, renderImage} from '../../utils';
 import templatesData from '../../data/templates-data';
 
 const ANSWER_TYPES = templatesData.gamePage;
-const DEBUG = window.location.hash.replace(`#`, ``).toLowerCase() === `debug`;
+const DEBUG = globalGameData.DEBUG;
 
 export default class TwoOfTwoGameView extends AbstractView {
   get element() {

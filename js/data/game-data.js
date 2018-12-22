@@ -10,6 +10,7 @@ export const ImageType = {
 };
 
 export const globalGameData = {
+  DEBUG: window.location.hash.replace(`#`, ``).toLowerCase() === `debug`,
   TOTAL_LIVES: 3,
   MIN_LIVES: 0,
   MAX_ANSWERS: 10,

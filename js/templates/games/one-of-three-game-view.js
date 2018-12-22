@@ -1,9 +1,9 @@
 import AbstractView from '../../abstract-view';
-import {ImageType} from '../../data/game-data';
+import {ImageType, globalGameData} from '../../data/game-data';
 import timer from '../items/timer';
 import {renderElement, renderImage} from '../../utils';
 
-const DEBUG = window.location.hash.replace(`#`, ``).toLowerCase() === `debug`;
+const DEBUG = globalGameData.DEBUG;
 
 export default class OneOfThreeGameView extends AbstractView {
   get element() {
