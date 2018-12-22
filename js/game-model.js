@@ -48,7 +48,7 @@ class GameModel {
   }
 
   static setStats(round, value) {
-    let newStats = round.stats.slice();
+    const newStats = round.stats.slice();
     newStats[round.currentTask] = value;
     return Object.assign({}, round, {
       stats: newStats

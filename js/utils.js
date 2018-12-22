@@ -96,8 +96,8 @@ export const renderImage = (item, alt) => {
 };
 
 export const massImageResize = (task) => {
-  let promise = new Promise((resolve, reject) => {
-    let baseFrame = {
+  const promise = new Promise((resolve, reject) => {
+    const baseFrame = {
       width: task.width,
       height: task.height
     };
