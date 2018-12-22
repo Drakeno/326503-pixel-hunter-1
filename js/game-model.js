@@ -66,7 +66,7 @@ class GameModel {
       } else {
         result = statsType.CORRECT;
       }
-    } else if (!taskResult.isCorrect) {
+    } else {
       result = statsType.WRONG;
     }
     return Object.assign({}, taskResult, {
